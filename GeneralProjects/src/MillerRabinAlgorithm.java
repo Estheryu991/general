@@ -10,15 +10,15 @@ public class MillerRabinAlgorithm {
 		for(int i = 0; i < round; i++){
 			if(millerRabin(n)){
 				count++;
-	        }
-	    }
+	        	}
+	    	}
 	      
 		if(count > (round / 2)){
 			return true;
-	    }
+	    	}
 		else{
 			return false;
-	    }
+	    	}
 	}
 	
 	//Here are helperfunctions
@@ -42,18 +42,18 @@ public class MillerRabinAlgorithm {
 	//n - 1 == 2^k * m, res[0] == k, res[1] == m
 	public static long[] getKM(long n){
 		long[] res = new long[2];
-	    long k = 0;
-	    n-=1;
+	    	long k = 0;
+	    	n-=1;
 	      
-	    while(n % 2 == 0 && n != 0){
-	    	k++;
-	        n /= 2;
-	    }
+	    	while(n % 2 == 0 && n != 0){
+	    		k++;
+	        	n /= 2;
+	    	}
 	      
-	    res[0] = k;
-	    res[1] = n;
+	    	res[0] = k;
+	    	res[1] = n;
 	      
-	    return res;
+	    	return res;
 	}
 	
 	//returns a^((2^k)*m) mod(n)
@@ -65,25 +65,25 @@ public class MillerRabinAlgorithm {
 	//executes miller rabin algorithm one time
 	public static boolean millerRabin(long n){
 		BigInteger a = getRandom(n);
-	    long[] km = getKM(n);
+	    	long[] km = getKM(n);
 	      
-	    for(long i = km[0]; i >= 0; i--){
-	    	BigInteger cur = getModPow(a,i,km[1],n);
+	    	for(long i = km[0]; i >= 0; i--){
+	    		BigInteger cur = getModPow(a,i,km[1],n);
 	        
-	        if(cur.longValue() != 1){
+	        	if(cur.longValue() != 1){
 	          
-	        	if(cur.longValue() == (n - 1)){
-	        		return true;
-	        	}
-	        	else{
-	        		return false;
-	        	}
+	        		if(cur.longValue() == (n - 1)){
+	        			return true;
+	        		}
+	        		else{
+	        			return false;
+	        		}
 	        	
-	        }
+	        	}
 	    
-	    }
+	    	}
 	    
-	    return true;
+	    	return true;
 	}
 	    	    
 }
